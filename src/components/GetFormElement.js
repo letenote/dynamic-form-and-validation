@@ -8,6 +8,8 @@ const GetFormElement = ( props ) => {
     case "email":
     case "password":
       return <TextField {...props}/>
+    default:
+      return null
   }
 }
 

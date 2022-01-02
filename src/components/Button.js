@@ -5,7 +5,7 @@ const Button = ({ type, style, onClick, title }) => {
     <button
       type={type || 'button'}
       style={style || {}}
-      onClick={() => onClick}
+      onClick={onClick}
     >
       { title || 'title' }
     </button>
