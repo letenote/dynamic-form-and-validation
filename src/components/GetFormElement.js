@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { memo } from 'react';
 import TextField from './form/TextField';
 
 const GetFormElement = ( props ) => {
   const { type } = props;
+  console.log("--> GetFormElement Render", props.label);
+
   switch( type ){
     case "text":
     case "email":
@@ -11,6 +13,10 @@ const GetFormElement = ( props ) => {
     default:
       return null
   }
+};
+
+const compare = ( prevProps, nextProps ) => {
+  return JSON.stringify(prevProps) === JSON.stringify(nextProps)
 }
 
-export default GetFormElement
+export default memo(GetFormElement, compare);

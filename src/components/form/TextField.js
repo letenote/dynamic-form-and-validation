@@ -11,11 +11,15 @@ const TextField = ({
   disable,
   addStyle,
   required,
-  validation,
+  validation : { isError, isTouched, message },
   onBlur,
   onKeyUp
 }) => {
   const [ showPS, setShowPS ] = useState(false);
+  const showError = isError && isTouched;
+  const errorMessage = message || "";
+  console.log("---> TextField Render", label, showError)
+  
   return (
     <div
       style={
@@ -39,7 +43,7 @@ const TextField = ({
       </label>
       <div style={{ position: 'relative' }}>
         <input
-          className={validation && validation.isTouched && validation.isError ? 'error-validation' : null}
+          className={ showError ? 'error-validation' : null}
           value={value}
           disabled={disable}
           onChange={onChange}
@@ -64,12 +68,16 @@ const TextField = ({
         }
       </div>
       {
-        validation && validation.isTouched && validation.isError && (
-          <div className="error-validation" style={{ position: 'absolute', bottom: '-20px'}}>{validation.message}</div>
+        showError && (
+          <div className="error-validation" style={{ position: 'absolute', bottom: '-20px'}}>{ errorMessage }</div>
         )
       }
     </div>
   );
 };
 
-export default memo(TextField);
+const compare = ( prevProps, nextProps ) => {
+  return JSON.stringify(prevProps) === JSON.stringify(nextProps)
+}
+
+export default memo(TextField,compare);
