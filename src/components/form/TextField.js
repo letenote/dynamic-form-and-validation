@@ -1,30 +1,30 @@
 import React, { useState, memo } from 'react';
 
 const TextField = ({
-  label,
+  label = 'Please set Label',
   id,
   name,
-  placeholder,
+  placeholder = 'This Placeholder ...',
   type,
-  value,
+  value = "",
   onChange,
   disable,
-  addStyle,
-  required,
-  validation : { isError, isTouched, message },
+  addStyle = null,
+  required = true,
+  validation,
   onBlur,
   onKeyUp
 }) => {
   const [ showPS, setShowPS ] = useState(false);
-  const showError = isError && isTouched;
-  const errorMessage = message || "";
+  const showError = validation?.isError && validation?.isTouched;
+  const errorMessage = validation?.message || "";
   console.log("---> TextField Render", label, showError)
   
   return (
     <div
       style={
         Object.assign({}, 
-          addStyle || null, 
+          addStyle, 
           {
             display: 'flex',
             flexDirection: 'column',

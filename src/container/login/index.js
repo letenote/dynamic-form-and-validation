@@ -24,6 +24,7 @@ const Login = () => {
     validateOnChange: false,
     validateOnBlur: false,
     onSubmit:(values, help) => {
+      alert("success, check log for data result")
       console.warn('RESULT::', values, help);
       help.resetForm()
     }
