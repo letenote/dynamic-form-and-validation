@@ -2,24 +2,25 @@ import React, { memo, useCallback } from 'react';
 import GetFormElement from '../../../components/GetFormElement';
 import Button from '../../../components/Button';
 
-const DiagnosesRender = ({ fields, diagnose, diagnoseIndex, arrayHelpers, onKeyUp }) => {
+const DiagnosesRender = ({ fields, diagnose, diagnoseIndex, arrayHelpers }) => {
   const diagnoseOnKeyUpHandler = useCallback((e) => {
     const { id, tabIndex } = e.target;
+    const getDiagnose = diagnose['diagnose'];
     console.log("-> onKeyup diagnoses", id, e.target)
     const handler = {
       diagnose: (
         fields.setFieldValue(
           `${'diagnoses'}[${tabIndex}]${'date'}.disable`,
-          diagnose.value !== '' ? false : true
+          getDiagnose.value !== '' ? false : true
         ),
         fields.setFieldValue(
           `${'diagnoses'}[${tabIndex}]${'date'}.required`,
-          diagnose.value !== '' ? true : false
+          getDiagnose.value !== '' ? true : false
         )
       )
     }
     return handler[id]
-  }, [ diagnose.value ]);
+  }, [ diagnose['diagnose'].value ]);
 
   return(
     <fieldset

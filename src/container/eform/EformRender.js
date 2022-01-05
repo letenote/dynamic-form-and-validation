@@ -48,37 +48,37 @@ const EformRender = ({ validateSchema }) => {
         {
           Object.keys(fields.values).map((field, fieldIndex) => {
             switch (field) {
-              // case 'accidents':
-              //   return (
-              //     <FieldArray
-              //       key={fieldIndex}
-              //       name="accidents"
-              //       render={(arrayHelpers) => (
-              //         <div>
-              //           <Divider/>
-              //           {
-              //             fields.values['accidents'].map((accident, accidentIndex) => {
-              //               return(
-              //                 <AccidentsRender
-              //                   key={accidentIndex}
-              //                   fields={fields}
-              //                   accident={accident}
-              //                   accidentIndex={accidentIndex}
-              //                   arrayHelpers={arrayHelpers}
-              //                 />
-              //               )
-              //             })
-              //           }
-              //           <Button
-              //             type="button"
-              //             style={{ width: '100%', marginTop: '20px' }}
-              //             onClick={() => arrayHelpers.push(accidentFormSchema)}
-              //             title={"Add Accident"}
-              //           />
-              //         </div>
-              //       )}
-              //     />
-              //   );
+              case 'accidents':
+                return (
+                  <FieldArray
+                    key={fieldIndex}
+                    name="accidents"
+                    render={(arrayHelpers) => (
+                      <div>
+                        <Divider/>
+                        {
+                          fields.values['accidents'].map((accident, accidentIndex) => {
+                            return(
+                              <AccidentsRender
+                                key={accidentIndex}
+                                fields={fields}
+                                accident={accident}
+                                accidentIndex={accidentIndex}
+                                arrayHelpers={arrayHelpers}
+                              />
+                            )
+                          })
+                        }
+                        <Button
+                          type="button"
+                          style={{ width: '100%', marginTop: '20px' }}
+                          onClick={() => arrayHelpers.push(accidentFormSchema)}
+                          title={"Add Accident"}
+                        />
+                      </div>
+                    )}
+                  />
+                );
               case 'diagnoses':
                 return (
                   <FieldArray
@@ -96,7 +96,6 @@ const EformRender = ({ validateSchema }) => {
                                 diagnose={diagnose}
                                 diagnoseIndex={diagnoseIndex}
                                 arrayHelpers={arrayHelpers}
-                                onKeyUp={onKeyUpHandler}
                               />
                             )
                           })

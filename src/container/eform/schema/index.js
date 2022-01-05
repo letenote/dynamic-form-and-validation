@@ -234,5 +234,5 @@ export const formSchema = {
     ]
   },
   diagnoses: [ diagnoseFormSchema ],
-  // accidents: [ accidentFormSchema ],
+  accidents: [ accidentFormSchema ],
 };
