@@ -24,7 +24,7 @@ const EformRender = ({ validateSchema }) => {
   const onKeyUpHandler = useCallback((e) => {
     const { id } = e.target;
     const { firstName } = fields.values;
-    console.log("-> onKeyup", id)
+    console.log("-> onKeyup parent", id, e.target)
     const handler = {
       firstName : fields.setFieldValue(
         `lastName.disable`,
@@ -79,37 +79,38 @@ const EformRender = ({ validateSchema }) => {
               //       )}
               //     />
               //   );
-              // case 'diagnoses':
-              //   return (
-              //     <FieldArray
-              //       key={fieldIndex}
-              //       name="diagnoses"
-              //       render={(arrayHelpers) => (
-              //         <div>
-              //           <Divider/>
-              //           {
-              //             fields.values['diagnoses'].map((diagnose, diagnoseIndex) => {
-              //               return (
-              //                 <DiagnosesRender
-              //                   key={diagnoseIndex}
-              //                   fields={fields}
-              //                   diagnose={diagnose}
-              //                   diagnoseIndex={diagnoseIndex}
-              //                   arrayHelpers={arrayHelpers}
-              //                 />
-              //               )
-              //             })
-              //           }
-              //           <Button
-              //             type="button"
-              //             style={{ width: '100%', marginTop: '20px' }}
-              //             onClick={() => arrayHelpers.push(diagnoseFormSchema)}
-              //             title={"Add Diagnose"}
-              //           />
-              //         </div>
-              //       )}
-              //     />
-              //   );
+              case 'diagnoses':
+                return (
+                  <FieldArray
+                    key={fieldIndex}
+                    name="diagnoses"
+                    render={(arrayHelpers) => (
+                      <div>
+                        <Divider/>
+                        {
+                          fields.values['diagnoses'].map((diagnose, diagnoseIndex) => {
+                            return (
+                              <DiagnosesRender
+                                key={diagnoseIndex}
+                                fields={fields}
+                                diagnose={diagnose}
+                                diagnoseIndex={diagnoseIndex}
+                                arrayHelpers={arrayHelpers}
+                                onKeyUp={onKeyUpHandler}
+                              />
+                            )
+                          })
+                        }
+                        <Button
+                          type="button"
+                          style={{ width: '100%', marginTop: '20px' }}
+                          onClick={() => arrayHelpers.push(diagnoseFormSchema)}
+                          title={"Add Diagnose"}
+                        />
+                      </div>
+                    )}
+                  />
+                );
               default:
                 const currentDefaultField = fields.values[field];
                 return <GetFormElement

@@ -13,7 +13,8 @@ const TextField = ({
   required = true,
   validation,
   onBlur,
-  onKeyUp
+  onKeyUp,
+  tabIndex = ""
 }) => {
   const [ showPS, setShowPS ] = useState(false);
   const showError = validation?.isError && validation?.isTouched;
@@ -49,6 +50,7 @@ const TextField = ({
           onChange={onChange}
           onBlur={onBlur}
           onKeyUp={onKeyUp}
+          {...(tabIndex !== '' && { tabIndex })}
           id={id}
           name={name}
           placeholder={placeholder}

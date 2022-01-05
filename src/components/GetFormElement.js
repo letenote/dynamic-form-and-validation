@@ -3,7 +3,7 @@ import TextField from './form/TextField';
 
 const GetFormElement = ( props ) => {
   const { type = 'text' } = props;
-  console.log("--> GetFormElement Render", props.label);
+  console.log("--> GetFormElement Render", props.label, props.tabIndex ?? '-');
 
   switch( type ){
     case "text":

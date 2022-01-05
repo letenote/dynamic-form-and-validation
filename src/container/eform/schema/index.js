@@ -19,7 +19,7 @@ export const diagnoseFormSchema = {
   date: {
     id: "date",
     label: "date",
-    disable: false,
+    disable: true,
     placeholder: "Enter date",
     type: "text",
     validationType: "string",
@@ -233,6 +233,6 @@ export const formSchema = {
       }
     ]
   },
-  // diagnoses: [ diagnoseFormSchema ],
+  diagnoses: [ diagnoseFormSchema ],
   // accidents: [ accidentFormSchema ],
 };

@@ -1,8 +1,26 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 import GetFormElement from '../../../components/GetFormElement';
 import Button from '../../../components/Button';
 
-const DiagnosesRender = ({ fields, diagnose, diagnoseIndex, arrayHelpers }) => {
+const DiagnosesRender = ({ fields, diagnose, diagnoseIndex, arrayHelpers, onKeyUp }) => {
+  const diagnoseOnKeyUpHandler = useCallback((e) => {
+    const { id, tabIndex } = e.target;
+    console.log("-> onKeyup diagnoses", id, e.target)
+    const handler = {
+      diagnose: (
+        fields.setFieldValue(
+          `${'diagnoses'}[${tabIndex}]${'date'}.disable`,
+          diagnose.value !== '' ? false : true
+        ),
+        fields.setFieldValue(
+          `${'diagnoses'}[${tabIndex}]${'date'}.required`,
+          diagnose.value !== '' ? true : false
+        )
+      )
+    }
+    return handler[id]
+  }, [ diagnose.value ]);
+
   return(
     <fieldset
       style={{ display: 'flex' }}
@@ -17,19 +35,11 @@ const DiagnosesRender = ({ fields, diagnose, diagnoseIndex, arrayHelpers }) => {
             disable: currentDiagnoseField.disable,
             label: currentDiagnoseField.label,
             id: currentDiagnoseField.id,
+            tabIndex: diagnoseIndex,
             name: `${'diagnoses'}[${diagnoseIndex}][${diagnoseChild}].value`, // => path obj for store/save value
             placeholder: currentDiagnoseField.placeholder,
             type: currentDiagnoseField.type,
-            onKeyUp : () => {
-              // handle change required
-              // after onchange value diagnose
-              const { diagnoses } = fields.values;
-              const getDiagnose = diagnoses[diagnoseIndex]['diagnose'].value;
-              return fields.setFieldValue(
-                `${'diagnoses'}[${diagnoseIndex}]${'date'}.required`,
-                getDiagnose !== '' ? true : false
-              )
-            },
+            onKeyUp: diagnoseOnKeyUpHandler,
             onChange: fields.handleChange,
             value: currentDiagnoseField.value,
             required: currentDiagnoseField.required,
@@ -47,7 +57,7 @@ const DiagnosesRender = ({ fields, diagnose, diagnoseIndex, arrayHelpers }) => {
             }
           };
 
-          return GetFormElement(props)
+          return <GetFormElement {...props}/>
         })
       }
       <div style={{ display: "flex", alignItems: "center" }}>
