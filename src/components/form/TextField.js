@@ -1,24 +1,26 @@
 import React, { useState, memo } from 'react';
 
 const TextField = ({
-  label = 'Please set Label',
-  id,
-  name,
-  placeholder = 'This Placeholder ...',
-  type,
+  label = 'Please set Label here...',
+  id = 'set Id here...',
+  name = 'set Name here...',
+  placeholder = 'set Placeholder here...',
+  type = 'text',
   value = "",
-  onChange,
-  disable,
+  onChange = () => console.warn("handle onChange Event Here..."),
+  disable = true,
   addStyle = null,
   required = true,
-  validation,
-  onBlur,
-  onKeyUp,
-  tabIndex = ""
+  validation = { isError: true, isTouched: true, message: 'handle validation here...' },
+  onBlur = () => console.warn("handle onBlur Event Here..."),
+  onKeyUp = () => console.warn("handle onKeyUp Event Here..."),
+  tabIndex = "set TabIndex here...",
+  onSelect = () => console.warn("handle onSelect Event Here...")
 }) => {
   const [ showPS, setShowPS ] = useState(false);
   const showError = validation?.isError && validation?.isTouched;
   const errorMessage = validation?.message || "";
+  const onSelectEventByType = ["date"]
   console.log("---> TextField Render", label, showError)
   
   return (
@@ -49,8 +51,12 @@ const TextField = ({
           disabled={disable}
           onChange={onChange}
           onBlur={onBlur}
-          onKeyUp={onKeyUp}
+          {...(onSelectEventByType.includes(type) ? { onSelect } : { onKeyUp })}
           {...(tabIndex !== '' && { tabIndex })}
+          onKeyDown={(e) => {
+            const invalidKey = ["Escape", "Enter" ];
+            return invalidKey.includes(e.key) && console.warn("user press button", e.key);
+          }}
           id={id}
           name={name}
           placeholder={placeholder}

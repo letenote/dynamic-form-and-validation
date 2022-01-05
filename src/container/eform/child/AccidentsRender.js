@@ -7,7 +7,7 @@ const AccidentsRender = ({ fields, accident, accidentIndex, arrayHelpers }) => {
     const { id, tabIndex } = e.target;
     const getAccident = accident['accident'];
     const getDate = accident['date'];
-    console.log("-> onKeyup accident", id, e.target);
+    console.log("-> onKeyup accident", id, e.target, accident);
     const handler = {
       accident: (
         fields.setFieldValue(
@@ -41,7 +41,9 @@ const AccidentsRender = ({ fields, accident, accidentIndex, arrayHelpers }) => {
             value : currenAccidenttField.value,
             required: currenAccidenttField.required,
             onKeyUp: accidentOnKeyUpHandler,
+            onBlur: fields.handleBlur,
             onChange: fields.handleChange,
+            onSelect: accidentOnKeyUpHandler,
             validation: {
               isError: fields.errors.hasOwnProperty('accidents') && 
                 !!fields.errors["accidents"][accidentIndex] && 

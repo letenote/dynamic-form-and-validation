@@ -9,6 +9,7 @@ const GetFormElement = ( props ) => {
     case "text":
     case "email":
     case "password":
+    case "date":
       return <TextField {...props}/>
     default:
       return null

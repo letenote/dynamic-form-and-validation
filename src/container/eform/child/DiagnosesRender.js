@@ -40,7 +40,9 @@ const DiagnosesRender = ({ fields, diagnose, diagnoseIndex, arrayHelpers }) => {
             name: `${'diagnoses'}[${diagnoseIndex}][${diagnoseChild}].value`, // => path obj for store/save value
             placeholder: currentDiagnoseField.placeholder,
             type: currentDiagnoseField.type,
+            onBlur: fields.handleBlur,
             onKeyUp: diagnoseOnKeyUpHandler,
+            onSelect: diagnoseOnKeyUpHandler,
             onChange: fields.handleChange,
             value: currentDiagnoseField.value,
             required: currentDiagnoseField.required,

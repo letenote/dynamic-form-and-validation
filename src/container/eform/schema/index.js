@@ -21,8 +21,8 @@ export const diagnoseFormSchema = {
     label: "date",
     disable: true,
     placeholder: "Enter date",
-    type: "text",
-    validationType: "string",
+    type: "date",
+    validationType: "date",
     value: "",
     targetValue: 'date.value',
     required: false,
@@ -39,7 +39,7 @@ export const diagnoseFormSchema = {
         is: (diagnose) => diagnose.value && diagnose.value !== '',
         then: {
           type: "required",
-          validationType: "string",
+          validationType: "date",
           params: ["DC: this field is required"]
         }
       }
@@ -78,7 +78,7 @@ export const accidentFormSchema = {
     label: "date",
     disable: false,
     placeholder: "Enter date",
-    type: "text",
+    type: "date",
     validationType: "string",
     value: "",
     targetValue: 'date.value',
@@ -87,14 +87,6 @@ export const accidentFormSchema = {
       {
         type: "required",
         params: ["this field is required"]
-      },
-      {
-        type: "min",
-        params: [5, "first name cannot be less than 5 characters"]
-      },
-      {
-        type: "max",
-        params: [10, "first name cannot be more than 10 characters"]
       }
     ]
   },
@@ -109,10 +101,6 @@ export const accidentFormSchema = {
     targetValue: 'doctorName.value',
     required: false,
     validations: [
-      // {
-      //   type: "required",
-      //   params: ["this field is required"]
-      // },
       {
         type: "min",
         params: [5, "first name cannot be less than 5 characters"]
