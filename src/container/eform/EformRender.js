@@ -40,6 +40,8 @@ const EformRender = ({ validate }) => {
     return handler[id]
   },[ getFirstName.value ]);
 
+  const resetFormHandler = useCallback(() => fields.resetForm(), []);
+
   return (
     <FormikProvider value={fields}>
       <form onSubmit={fields.handleSubmit} style={{ padding: 20, display: "flex", flexDirection: "column" }}>
@@ -133,7 +135,7 @@ const EformRender = ({ validate }) => {
           })
         }
         <div style={{ display: "flex", width: "50%", alignSelf: "flex-end", marginTop: 99 }}>
-          <button type="button" disabled={true} style={{ marginRight: 20 }}>Cancel</button>
+          <button type="button" disabled={false} onClick={resetFormHandler} style={{ marginRight: 20 }}>Cancel</button>
           <button type="submit">Submit</button>
         </div>
       </form>
