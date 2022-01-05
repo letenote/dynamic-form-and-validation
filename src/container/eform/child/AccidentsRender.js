@@ -7,7 +7,7 @@ const AccidentsRender = ({ fields, accident, accidentIndex, arrayHelpers }) => {
     const { id, tabIndex } = e.target;
     const getAccident = accident['accident'];
     const getDate = accident['date'];
-    console.log("-> onKeyup accident", id, e.target)
+    console.log("-> onKeyup accident", id, e.target);
     const handler = {
       accident: (
         fields.setFieldValue(
@@ -19,7 +19,7 @@ const AccidentsRender = ({ fields, accident, accidentIndex, arrayHelpers }) => {
           getAccident.value !== '' && getDate.value !== '' ? true : false
         )
       )
-    }
+    };
     return handler[id]
   }, [ accident['accident'].value, accident['date'].value ]);
 
@@ -41,23 +41,6 @@ const AccidentsRender = ({ fields, accident, accidentIndex, arrayHelpers }) => {
             value : currenAccidenttField.value,
             required: currenAccidenttField.required,
             onKeyUp: accidentOnKeyUpHandler,
-            // onKeyUp : () => {
-            //   const { accidents } = fields.values;
-            //   const getAccident = accidents[accidentIndex]['accident'].value;
-            //   const getDate = accidents[accidentIndex]['date'].value;
-            //   // handle change disable and required
-            //   // after onchange value
-            //   return (
-                // fields.setFieldValue(
-                //   `${'accidents'}[${accidentIndex}]${'doctorName'}.disable`,
-                //   getAccident !== '' && getDate !== '' ? false : true
-                // ),
-            //     fields.setFieldValue(
-            //       `${'accidents'}[${accidentIndex}]${'doctorName'}.required`,
-            //       getAccident !== '' && getDate !== '' ? true : false
-            //     )
-            //   )
-            // },
             onChange: fields.handleChange,
             validation: {
               isError: fields.errors.hasOwnProperty('accidents') && 

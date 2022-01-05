@@ -6,7 +6,7 @@ const DiagnosesRender = ({ fields, diagnose, diagnoseIndex, arrayHelpers }) => {
   const diagnoseOnKeyUpHandler = useCallback((e) => {
     const { id, tabIndex } = e.target;
     const getDiagnose = diagnose['diagnose'];
-    console.log("-> onKeyup diagnoses", id, e.target)
+    console.log("-> onKeyup diagnoses", id, e.target);
     const handler = {
       diagnose: (
         fields.setFieldValue(
@@ -18,7 +18,7 @@ const DiagnosesRender = ({ fields, diagnose, diagnoseIndex, arrayHelpers }) => {
           getDiagnose.value !== '' ? true : false
         )
       )
-    }
+    };
     return handler[id]
   }, [ diagnose['diagnose'].value ]);
 
