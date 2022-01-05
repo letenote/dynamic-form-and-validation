@@ -172,7 +172,7 @@ export const formSchema = {
   lastName: {
     id: "lastName",
     label: "Last name",
-    disable: false,
+    disable: true,
     placeholder: "Enter last name",
     type: "text",
     validationType: "string",
@@ -233,6 +233,6 @@ export const formSchema = {
       }
     ]
   },
-  diagnoses: [ diagnoseFormSchema ],
-  accidents: [ accidentFormSchema ],
+  // diagnoses: [ diagnoseFormSchema ],
+  // accidents: [ accidentFormSchema ],
 };
