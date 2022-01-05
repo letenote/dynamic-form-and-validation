@@ -1,29 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { formSchema } from './schema';
 import ValidationSchema from '../../helper/schema/ValidationSchema';
+import sleep from '../../helper/sleep';
 import EformRender from './EformRender';
 
 const Eform = () => {
   const [ loading, setLoading ] = useState(true);
-  const [ validate, setValidate ] = useState(null);
+  const [ validateSchema, setValidateSchema ] = useState(null);
 
   useEffect(() => {
     const dataInit = async () => {
       const validationSchemaInit = await ValidationSchema.generator(formSchema);
-      setTimeout(() => setValidate(validationSchemaInit), 3000);
+      await sleep(3000);
+      setValidateSchema(validationSchemaInit);
     };
 
     dataInit();
   }, []);
 
   useEffect(() => {
-    // customize callback after validate value is change, not null;
-    validate !== null && setLoading(false)
-  },[validate]);
+    // customize callback after validateSchema value is change, not null;
+    validateSchema !== null && setLoading(false)
+  },[validateSchema]);
 
   return loading
     ? <>Loading ..</>
-    : <EformRender validate={validate}/>;
+    : <EformRender validateSchema={validateSchema}/>;
 };
 
 export default Eform;

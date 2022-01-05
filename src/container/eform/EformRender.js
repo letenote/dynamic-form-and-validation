@@ -7,10 +7,10 @@ import { diagnoseFormSchema, accidentFormSchema, formSchema } from './schema';
 import DiagnosesRender from './child/DiagnosesRender';
 import AccidentsRender from './child/AccidentsRender';
 
-const EformRender = ({ validate }) => {
+const EformRender = ({ validateSchema }) => {
   const fields = useFormik({
     initialValues: formSchema,
-    validationSchema: validate,
+    validationSchema: validateSchema,
     validateOnMount: false,
     validateOnChange: false,
     validateOnBlur: false,
@@ -135,7 +135,7 @@ const EformRender = ({ validate }) => {
           })
         }
         <div style={{ display: "flex", width: "50%", alignSelf: "flex-end", marginTop: 99 }}>
-          <button type="button" disabled={false} onClick={resetFormHandler} style={{ marginRight: 20 }}>Cancel</button>
+          <button type="button" disabled={false} onClick={resetFormHandler} style={{ marginRight: 20 }}>Reset</button>
           <button type="submit">Submit</button>
         </div>
       </form>
