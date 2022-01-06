@@ -69,7 +69,7 @@ const TextField = ({
         />
         {
           type === 'password' && (
-            <span className="btn-show" onClick={() => setShowPS(!showPS)}>
+            <span className="icon-input-rigth-position" style={{ cursor: "pointer" }} onClick={() => setShowPS(!showPS)}>
             icon
             </span>
           )

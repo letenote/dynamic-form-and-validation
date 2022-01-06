@@ -13,6 +13,7 @@ const Body = ({
   placeholder = "Choose an option",
   value = "", 
   options = [],
+  type = "select",
   validation = { isError: true, isTouched: true, message: 'handle validation here...' },
   onChangeNotFormElement = () => console.warn("handle onChange Event Here..."),
   onSelect = () => console.warn("handle onSelect Event Here..."),
@@ -33,7 +34,7 @@ const Body = ({
   const isPlaceholder = value.length === 0
   return (
     <div style={{ display: "flex", flexDirection: "column", marginBottom: 25 }}>
-      <label className={required ? "label-required" : null}>{label}</label>
+      <label className={required ? "label-required" : null} for={type}>{label}</label>
       <div 
         ref={selectListRef} 
         className={`select-container ${disable ? 'select-is-disabled' : ''} ${showError ? 'select-error-validation' : ''} ${showList ? 'select-is-active' : ''} `}
