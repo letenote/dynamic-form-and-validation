@@ -55,9 +55,12 @@ const Body = ({
         marginBottom: "25px",
       }}
     >
-      <label className={required ? "label-required" : null} htmlFor={"text"}>
-        {label}
-      </label>
+      <div className={'label-group'}>
+        <label className={required ? "label-required" : null} htmlFor={"text"}>
+          {label}
+        </label>
+        <span className={'sublabel'}>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
+      </div>
       <div 
         className={`autocomplete-container`}
       >

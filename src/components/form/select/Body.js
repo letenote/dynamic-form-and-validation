@@ -6,6 +6,7 @@ import useOnClickOutside from '../../../helper/useOnClickOutside';
 const { SelectContext } = SelectOptionsContext;
 const Body = ({ 
   label = "Please Set Label ..", 
+  sublabel = '',
   id = 'set Id here...',
   name = 'set Name here...',
   disable = false, 
@@ -34,7 +35,14 @@ const Body = ({
   const isPlaceholder = value.length === 0
   return (
     <div style={{ display: "flex", flexDirection: "column", marginBottom: 25 }}>
-      <label className={required ? "label-required" : null} for={type}>{label}</label>
+      <div className={'label-group'}>
+        <label className={required ? "label-required" : null} htmlFor={type}>{label}</label>
+        {
+          sublabel.length > 0 && (
+            <span className={'sublabel'}>{sublabel}</span>
+          )
+        }
+      </div>
       <div 
         ref={selectListRef} 
         className={`select-container ${disable ? 'select-is-disabled' : ''} ${showError ? 'select-error-validation' : ''} ${showList ? 'select-is-active' : ''} `}

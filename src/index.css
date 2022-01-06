@@ -53,14 +53,22 @@ code {
 
 label {
   font-size: 14px;
-  margin-bottom: 10px;
   font-weight: 500;
+}
+
+.label-group {
+  margin-bottom: 10px;
 }
 
 label.label-required::after {
   content: "*";
   margin-left: 3px;
   color: #ec1d1d;
+}
+
+.sublabel {
+  font-size: 12px;
+  margin-left: 5px;
 }
 
 input {
