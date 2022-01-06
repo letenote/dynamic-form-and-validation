@@ -12,8 +12,9 @@ const App = () => {
         disable={false}
         required={true}
         value={'pineapple'}
+        placeholder={'select fruits..'}
         validation={{
-          isError: true,
+          isError: false,
           isTouched: true,
           message: "field is required !"
         }}

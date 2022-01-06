@@ -6,7 +6,7 @@ const SelectOptionsContext = () => {
     const [ showList, setShowList ] = useState(false);
     const [ selectValue, setSelectValue ] = useState('');
     const [ selectList, setSelectList ] = useState([]);
-    const changeShowList = () => setShowList(!showList);
+    const changeShowList = (v) => setShowList(v);
     const changeSelectValue = (v) => (
       setSelectValue(v),
       setShowList(false)
