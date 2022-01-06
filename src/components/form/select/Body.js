@@ -6,37 +6,42 @@ import useOnClickOutside from '../../../helper/useOnClickOutside';
 const { SelectContext } = SelectOptionsContext;
 const Body = ({ 
   label = "Please Set Label ..", 
+  id = 'set Id here...',
+  name = 'set Name here...',
   disable = false, 
   required = false, 
   placeholder = "Choose an option",
   value = "", 
   options = [],
   validation = { isError: true, isTouched: true, message: 'handle validation here...' },
+  onChangeNotFormElement = () => console.warn("handle onChange Event Here..."),
+  onSelect = () => console.warn("handle onSelect Event Here..."),
+  onBlur = () => console.warn("handle onBlur Event Here..."),
 }) => {
   const selectListRef = useRef(null);
   const props = useContext(SelectContext);
-  const { showList, selectValue, changeSelectValue, changeSelectList, changeShowList } = props;
-  console.log("-> Body", props);
+  const { showList, changeSelectList, changeShowList } = props;
 
   useEffect(() => {
+    console.log('changeSelectList')
     changeSelectList(options);
-    value !== "" && changeSelectValue(value);
-  }, [options]);
+  },[ changeSelectList, options]);
 
   useOnClickOutside(selectListRef, () => changeShowList(false));
   const showError = validation?.isError && validation?.isTouched;
   const errorMessage = validation?.message || "";
+  const isPlaceholder = value.length === 0
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
+    <div style={{ display: "flex", flexDirection: "column", marginBottom: 25 }}>
       <label className={required ? "label-required" : null}>{label}</label>
       <div 
         ref={selectListRef} 
         className={`select-container ${disable ? 'select-is-disabled' : ''} ${showError ? 'select-error-validation' : ''} ${showList ? 'select-is-active' : ''} `}
       >
-        <div className={"selected-text"} onClick={() => !disable && changeShowList(!showList)}>
-          {selectValue.length === 0 ? placeholder : selectValue}
+        <div className={`selected-text ${isPlaceholder && 'select-placeholder'}`} onClick={() => !disable && changeShowList(!showList)}>
+          {isPlaceholder ? placeholder : value}
         </div>
-        { !disable && <Options/> }
+        { !disable && <Options id={id} name={name} onBlur={onBlur} onSelect={onSelect} value={value} onChange={onChangeNotFormElement}/> }
         {
           showError && (
             <div className="error-validation" style={{ position: 'absolute' }}>

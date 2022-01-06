@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import TextField from './form/TextField';
+import Select from './form/select';
 
 const GetFormElement = ( props ) => {
   const { type = 'text' } = props;
@@ -11,6 +12,9 @@ const GetFormElement = ( props ) => {
     case "password":
     case "date":
       return <TextField {...props}/>
+    case "select":
+    case "dropdown":
+      return <Select {...props}/>
     default:
       return null
   }

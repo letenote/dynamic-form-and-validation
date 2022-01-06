@@ -20,27 +20,53 @@ const EformRender = ({ validateSchema }) => {
     },
   });
   // console.log("DEBUG", fields)
-  const getFirstName = fields.values.firstName
-  const onKeyUpHandler = useCallback((e) => {
+
+  const getFirstName = fields.values.firstName;
+  const getDate = fields.values.date;
+  const getFruit = fields.values.fruit;
+  
+  const changeDisableRequiredLogic = useCallback(async (e) => {
     const { id } = e.target;
-    const { firstName } = fields.values;
-    console.log("-> onKeyup parent", id, e.target)
-    const handler = {
-      firstName : fields.setFieldValue(
-        `lastName.disable`,
-        firstName.value !== '' ? false : true
-      ).then(() => {
+    const { firstName, date, fruit } = fields.values;
+    console.log("-> onKeyup parent", id, e.target, date, fields)
+
+    switch(id){
+      case "firstName":
+        await fields.setFieldValue(
+          `lastName.disable`,
+          firstName.value !== '' ? false : true
+        );
         fields.setFieldValue(
           `lastName.required`,
           firstName.value !== '' ? true : false
-        )
-      })
+        );
+      case "date":
+        await fields.setFieldValue(
+          `hobi.disable`,
+          date.value !== '' ? false : true
+        );
+        fields.setFieldValue(
+          `hobi.required`,
+          date.value !== '' ? true : false
+        );
+      case "fruit":
+        await fields.setFieldValue(
+          `email.disable`,
+          fruit.value !== '' ? false : true
+        );
+        fields.setFieldValue(
+          `email.required`,
+          fruit.value !== '' ? true : false
+        );
+      default:
+        return null
     };
+  },[ getFirstName.value, getFruit.value, getDate.value ]);
 
-    return handler[id]
-  },[ getFirstName.value ]);
-
-  const resetFormHandler = useCallback(() => fields.resetForm(), []);
+  const resetFormHandler = useCallback(() => {
+    fields.values["fruit"].value = ""
+    fields.resetForm()
+  }, []);
 
   return (
     <FormikProvider value={fields}>
@@ -119,9 +145,20 @@ const EformRender = ({ validateSchema }) => {
                   id={currentDefaultField.id}
                   name={`${field}.value`} // => path obj for store/save value
                   placeholder={currentDefaultField.placeholder}
-                  onKeyUp={onKeyUpHandler}
+                  onKeyUp={changeDisableRequiredLogic}
                   type={currentDefaultField.type}
+                  options={currentDefaultField.options}
                   onChange={fields.handleChange}
+                  onChangeNotFormElement={(value) => {
+                    fields.values[field].value = value // <= for populate field || force assign value
+                    // fields.setFieldValue(`${field}.value`, value)
+                    console.log("onChangeNotFormElement", field, value, currentDefaultField, fields)
+                  }}
+                  // onBlurNotFormElement={(value) => {
+                  //   fields.setFieldTouched(`${field}.value`, value)
+                  //   console.log("onBlurNotFormElement", field, fields)
+                  // }}
+                  onSelect={changeDisableRequiredLogic}
                   onBlur={fields.handleBlur}
                   value={currentDefaultField.value}
                   required={currentDefaultField.required}
