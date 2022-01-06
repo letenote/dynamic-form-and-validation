@@ -17,10 +17,11 @@ const Body = ({
   const props = useContext(SelectContext);
   const { showList, selectValue, changeSelectValue, changeSelectList, changeShowList } = props;
   console.log("-> Body", props);
+
   useEffect(() => {
     changeSelectList(options);
     value !== "" && changeSelectValue(value);
-  }, []);
+  }, [options]);
 
   useOnClickOutside(selectListRef, () => changeShowList(false));
   const showError = validation?.isError && validation?.isTouched;
@@ -30,9 +31,9 @@ const Body = ({
       <label className={required ? "label-required" : null}>{label}</label>
       <div 
         ref={selectListRef} 
-        className={`select-container ${disable ? 'select-is-disable' : ''} ${showError ? 'select-error-validation' : ''} ${showList ? 'select-is-active' : ''} `}
+        className={`select-container ${disable ? 'select-is-disabled' : ''} ${showError ? 'select-error-validation' : ''} ${showList ? 'select-is-active' : ''} `}
       >
-        <div className={"selected-text"} onClick={() => !showList ? changeShowList(true) : null}>
+        <div className={"selected-text"} onClick={() => !disable && changeShowList(!showList)}>
           {selectValue.length === 0 ? placeholder : selectValue}
         </div>
         { !disable && <Options/> }

@@ -1,6 +1,29 @@
 :root {
-  --default-border-form: 1px solid #e0e0e0;
-  --default-border-radius-form: 4px;
+  --theme-background-color: #1d88ec;
+  --theme-background-color-hover: #1d54ec;
+  --theme-border: 1px solid #1d54ec;
+  --disabled-opacity: 0.8;
+  --disabled-cursor: not-allowed;
+  --disabled-background-color: #ededed;
+  --form-border: 1px solid #e0e0e0;
+  --form-border-radius: 4px;
+  --form-padding: 10px;
+  --form-box-sizing: border-box;
+  --focus-border-color: #66afe9;
+  --focus-outline: 0;
+  --focus-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+    0 0 8px rgba(102, 175, 233, 0.6);
+  --focus-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+    0 0 8px rgba(102, 175, 233, 0.6);
+  --validation-border-color: #e9a744;
+  --validation-outline: 0;
+  --validation-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+    0 0 8px rgba(214, 127, 28, 0.6);
+  --validation-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+    0 0 8px rgba(214, 127, 28, 0.6);
+  --validation-color: #e9a744;
+  --validation-font-size: 12px;
+  --validation-margin-top: 5px;
 }
 
 body {
@@ -20,7 +43,7 @@ code {
 label {
   font-size: 13px;
   margin-bottom: 10px;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 label.label-required::after {
@@ -31,16 +54,16 @@ label.label-required::after {
 
 input {
   width: 100%;
-  padding: 10px;
-  /* margin-top: 5px; */
-  box-sizing: border-box;
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
+  padding: var(--form-padding);
+  box-sizing: var(--form-box-sizing);
+  border: var(--form-border-radius);
+  border-radius: var(--form-border-radius);
 }
 
 input:disabled {
-  opacity: 0.8;
-  cursor: not-allowed;
+  opacity: var(--disabled-opacity);
+  cursor: var(--disabled-cursor);
+  background-color: var(--disabled-background-color);
 }
 
 input[type="checkbox"] {
@@ -49,42 +72,39 @@ input[type="checkbox"] {
 }
 
 input:focus {
-  border-color: #66afe9;
-  outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
-    0 0 8px rgba(102, 175, 233, 0.6);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
-    0 0 8px rgba(102, 175, 233, 0.6);
+  border-color: var(--focus-border-color);
+  outline: var(--focus-outline);
+  -webkit-box-shadow: var(--focus-webkit-box-shadow);
+  box-shadow: var(--focus-box-shadow);
 }
 
 input.error-validation {
-  border-color: #e9a744;
-  outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
-    0 0 8px rgba(214, 127, 28, 0.6);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
-    0 0 8px rgba(214, 127, 28, 0.6);
+  border-color: var(--validation-border-color);
+  outline: var(--validation-outline);
+  -webkit-box-shadow: var(--validation-webkit-box-shadow);
+  box-shadow: var(var(--validation-box-shadow));
 }
 
 button {
   width: 100%;
   padding: 10px;
   font-weight: bold;
-  background-color: #1d88ec;
-  border: 1px solid #1d54ec;
+  background-color: var(--theme-background-color);
+  border: var(--theme-border);
   color: #ffffff;
   border-radius: 4px;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #1d54ec;
-  border: 1px solid #1d54ec;
+  background-color: var(--theme-background-color-hover);
+  border: var(--theme-border);
 }
 
 button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+  opacity: var(--disabled-opacity);
+  cursor: var(--disabled-cursor);
+  background-color: var(--disabled-background-color);
 }
 
 fieldset {
@@ -101,9 +121,9 @@ fieldset {
 }
 
 div.error-validation {
-  font-size: 12px;
-  margin-top: 5px;
-  color: #e9a744;
+  font-size: var(--validation-font-size);
+  margin-top: var(--validation-margin-top);
+  color: var(--validation-color);
 }
 
 .login-box {
@@ -148,40 +168,36 @@ div.error-validation {
   display: inline-block;
   position: relative;
   width: 100%;
-  box-sizing: border-box;
-  border: var(--default-border-form);
-  border-radius: var(--default-border-radius-form);
+  box-sizing: var(--form-box-sizing);
+  border: var(--form-border);
+  border-radius: var(--form-border-radius);
 }
 
-.select-is-disable {
-  opacity: 0.8;
-  cursor: not-allowed;
-  background-color: #ededed;
+.select-is-disabled {
+  opacity: var(--disabled-opacity);
+  cursor: var(--disabled-cursor);
+  background-color: var(--disabled-background-color);
 }
 
 .select-is-active {
-  border-color: #66afe9;
-  outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
-    0 0 8px rgba(102, 175, 233, 0.6);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
-    0 0 8px rgba(102, 175, 233, 0.6);
+  border-color: var(--focus-border-color);
+  outline: var(--focus-outline);
+  -webkit-box-shadow: var(--focus-webkit-box-shadow);
+  box-shadow: var(--focus-box-shadow);
 }
 
 .select-error-validation {
-  border-color: #e9a744;
-  outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
-    0 0 8px rgba(214, 127, 28, 0.6);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
-    0 0 8px rgba(214, 127, 28, 0.6);
+  border-color: var(--validation-border-color);
+  outline: var(--validation-outline);
+  -webkit-box-shadow: var(--validation-webkit-box-shadow);
+  box-shadow: var(var(--validation-box-shadow));
 }
 
 .select-container ul {
   margin: 0;
   padding: 0;
   text-align: center;
-  border-radius: 5px;
+  border-radius: var(--form-border-radius);
   z-index: 1;
   background-color: white;
 }
@@ -190,13 +206,13 @@ div.error-validation {
   position: absolute;
   margin-top: 5px;
   width: 100%;
-  border: 1px solid #e4e4e4;
+  border: var(--form-border);
 }
 
 .select-container ul li {
   list-style-type: none;
-  padding: 6px 20px;
-  border-bottom: 1px solid #e4e4e4;
+  padding: var(--form-padding);
+  border-bottom: var(--form-border);
   cursor: pointer;
   text-align: left;
 }
@@ -206,15 +222,17 @@ div.error-validation {
 }
 
 .select-container ul li:hover {
-  background-color: #d9d9d9;
+  color: white;
+  background-color: var(--theme-background-color-hover);
 }
 
 .selected-text-checked {
-  background-color: #d9d9d9;
+  color: white;
+  background-color: var(--theme-background-color-hover);
 }
 
 .selected-text {
-  padding: 10px;
+  padding: var(--form-padding);
 }
 
 .selected-text::after {
